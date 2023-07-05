@@ -11,7 +11,7 @@ string connectionString = builder.Configuration.GetConnectionString("FilmeConnec
 
 // Add Entity Framework Core na Aplicação e Configurando o banco de dados
 builder.Services.AddDbContext<FilmeContext>(options =>
-options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+options.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Add AutoMapper na Aplicação
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
