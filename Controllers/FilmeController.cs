@@ -40,12 +40,13 @@ namespace FilmesApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ReadingFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
+        public IEnumerable<ReadFilmeDto> RecuperaFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
         {
-            var filmes =  _context.Filmes.Skip(skip).Take(take);
-            var filmesDto = _mapper.Map<List<ReadingFilmeDto>>(filmes);
+            var filmes =  _context.Filmes.Skip(skip).Take(take).ToList();
+            var filmesDto = _mapper.Map<List<ReadFilmeDto>>(filmes);
             return filmesDto;
         }
+
 
         [HttpGet("{id}")]
         public IActionResult RecuperaFilmePorId(int id)
@@ -55,7 +56,7 @@ namespace FilmesApi.Controllers
            {
                return NotFound();
            }
-           var filmeDto = _mapper.Map<ReadingFilmeDto>(filme);
+           var filmeDto = _mapper.Map<ReadFilmeDto>(filme);
            return Ok(filmeDto);
         }
 

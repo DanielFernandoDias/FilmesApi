@@ -11,7 +11,9 @@ namespace FilmesApi.Profiles
             CreateMap<CreateFilmeDto, Filme>();
             CreateMap<UpdateFilmeDto, Filme>();
             CreateMap<Filme, UpdateFilmeDto>();
-            CreateMap<Filme, ReadingFilmeDto>();
+            // No mapeamento de Filme para filme Dto, For Member readFilmeDto quero que mapeie a sessao de filme para sessao de filme Dto
+            CreateMap<Filme, ReadFilmeDto>().ForMember(dto => dto.Sessoes, opt => opt.MapFrom(filme
+                => filme.Sessoes));
         }
     }
 }

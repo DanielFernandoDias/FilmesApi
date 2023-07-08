@@ -13,5 +13,6 @@ namespace FilmesApi.Models
         public int EnderecoId { get; set; }
         // Propriedade de navegação para o relacionamento 1:1
         public virtual Endereco Endereco { get; set; }
+        public virtual ICollection<Sessao> Sessoes { get; set; }
     }
 }
